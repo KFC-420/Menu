@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title> THC 420 Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --kfc-green: #14a34a;
+      --kfc-green-dark: #0e7736;
+      --kfc-white: #fff;
+      --kfc-card-bg: rgba(255,255,255,0.73);
+      --kfc-border: #14a34a;
+    }
+    body {
+      margin: 0;
+      background: var(--kfc-green);
+      color: #212a20;
+      font-family: 'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;
+      min-height: 100vh;
+      background-image: url('https://raw.githubusercontent.com/ha05di/batman1788shop/main/kfc.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.28);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body, .header, .footer, .menu-wrap { position: relative; z-index: 1; }
+    .header {
+      padding: 28px 0 16px 0;
+      text-align: center;
+      background: transparent;
+      backdrop-filter: blur(2px);
+    }
+    .header img {
+      height: 64px; border-radius: 14px; box-shadow: 0 2px 18px #fff4, 0 0 0 4px #fff6;
+    }
+    .header-title {
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.32em;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      text-shadow: 0 3px 18px #0009, 0 1px 0 #0e773633;
+      filter: drop-shadow(0 2px 6px #14a34a80);
+    }
+    .menu-wrap { max-width: 520px; margin: 0 auto; padding: 20px 0 80px 0;}
+    .menu-item {
+      background: var(--kfc-card-bg);
+      border-radius: 18px;
+      box-shadow: 0 3px 20px #fff7, 0 1px 16px #14a34a3b;
+      margin:0 13px 22px 13px;
+      padding: 13px 15px 18px 15px;
+      border: 2px solid var(--kfc-border);
+      transition: box-shadow .18s;
+      backdrop-filter: blur(2.5px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .menu-img {
+      width: 93%;
+      max-width: 330px;
+      height: 148px;
+      border-radius: 14px 14px 6px 6px;
+      object-fit: cover;
+      background: #e8fff2;
+      border: 2.3px solid var(--kfc-green-dark);
+      box-shadow:0 2px 12px #14a34a36;
+      margin-bottom: 13px;
+      margin-top: 0;
+      display: block;
+      cursor: pointer;
+      transition: box-shadow .18s, transform .16s;
+    }
+    .menu-img:hover {
+      box-shadow: 0 0 0 7px #14a34a30, 0 4px 18px #fff4;
+      transform: scale(1.04);
+    }
+    .menu-info {
+      width: 100%;
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .menu-name {
+      font-size: 1.17em; font-weight: 900; margin-bottom: 2.5px;
+      color: var(--kfc-green-dark);
+      display: flex; align-items: center;
+      text-shadow: 0 2px 8px #14a34a11, 0 1px 0 #fff9;
+      flex-wrap: wrap;
+      line-height: 1.13;
+    }
+    .menu-badge {
+      display: inline-block;
+      background: var(--kfc-green);
+      color: #fff;
+      border-radius: 8px;
+      font-size: .85em; font-weight: 700;
+      padding: 2px 10px 2px 10px; margin-left: 10px; margin-right: 6px; letter-spacing: 1px;
+      box-shadow:0 1px 6px #14a34a39;
+    }
+    .menu-type {
+      display:inline-block;
+      background: #eaffea;
+      color: var(--kfc-green-dark);
+      font-size:.85em; border-radius:7px; padding:2px 10px; margin-left:8px;
+      border:1.2px solid #14a34a25;
+      font-weight: 600;
+    }
+    .menu-title {
+      color: var(--kfc-green-dark);
+      font-size: .97em; margin-bottom:1px; margin-right:4px;
+      font-weight: 500;
+    }
+    .menu-thccbd {
+      color: #1a9d4c;
+      font-size: .99em; font-weight: 600; margin-bottom:2px; margin-right:10px;
+    }
+    .menu-desc {
+      font-size:1em;
+      color: #292929;
+      margin:7px 0 0 0;
+      line-height: 1.5;
+      font-weight: 400;
+      text-shadow: 0 1px 10px #fff6;
+    }
+    .menu-bottom-prices {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-start;
+      margin-top: 18px;
+      position: static;
+      padding: 0 4px 0 4px;
+      flex-wrap: wrap;
+    }
+    .menu-spec {
+      background: var(--kfc-green-dark);
+      color: #fff;
+      font-size:1.09em;
+      border-radius:10px;
+      padding:3px 15px;
+      margin-right:2px;
+      display:inline-block;
+      border: 2.3px solid #fff;
+      box-shadow:0 1px 8px #14a34a22;
+      margin-bottom:0;
+      font-weight: 900;
+    }
+    .menu-price {
+      color: #fff;
+      font-weight: 900;
+      font-size:1.13em;
+      margin-left:6px;
+      text-shadow: 0 2px 10px #14a34a12, 0 0px 1px #0e773649;
+    }
+    .footer {
+      position:fixed; left:0; bottom:0; width:100vw;
+      color:var(--kfc-green-dark); background: #fffdfcf2;
+      font-size:.99em; text-align:center; padding:14px 0 10px 0; z-index:22;
+      border-top: 2.8px solid var(--kfc-border);
+      font-weight: 700;
+      backdrop-filter: blur(1.5px);
+    }
+    a { color: var(--kfc-green-dark); text-decoration:underline; }
+    @media (max-width:700px) {
+      .menu-wrap { padding: 5px 0 63px 0;}
+      .menu-item { margin: 0 2vw 15px 2vw; padding: 10px 5px 17px 5px;}
+      .menu-img { max-width:96vw; height: 31vw; min-height:54px;}
+      .menu-name { font-size: 1em;}
+    }
+    @media (max-width:400px){
+      .menu-bottom-prices { justify-content: center; gap: 7px;}
+    }
+    /* 图片放大灯箱 */
+    .img-lightbox-bg {
+      position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:8888;
+      background:rgba(20,20,20,.89);
+      display:none;align-items:center;justify-content:center;
+    }
+    .img-lightbox-bg.active { display:flex; }
+    .img-lightbox-bg img { max-width:90vw; max-height:84vh; border-radius:14px; box-shadow:0 6px 42px #000a;}
+    .img-lightbox-bg:after {
+      content:"✖";
+      color:#fff; font-size:2.1em; position: absolute; right:4vw; top:3vw; cursor:pointer; text-shadow:0 2px 10px #000c;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="https://raw.githubusercontent.com/ha05di/batman1788shop/main/kfclogo.png" alt="KFC THC" />
+    <div class="header-title">KFC GREEN MENU</div>
+  </div>
+  <div class="menu-wrap" id="menu"></div>
+  <div class="footer">
+    THC 420 &copy; Menu | <a href="https://t.me/T4H2C0_MEL" target="_blank">Telegram Order</a>
+  </div>
+  <div class="img-lightbox-bg" id="lightbox" onclick="this.classList.remove('active');">
+    <img src="" id="lightbox-img" alt="">
+  </div>
+  <script>
+    // --- Google Sheet 配置 ---
+    const SHEET_ID = "1_vY7Cu22ZjBjTH8aS9Fze3_TN7HCkHUm012YtSZWrys";
+    const SHEET_TAB_MENU = "kfcmenu";
+    const MENU_URL = `https://opensheet.elk.sh/${SHEET_ID}/${SHEET_TAB_MENU}`;
+    fetch(MENU_URL)
+      .then(res=>res.json())
+      .then(rows=>{
+        const html = rows.map(obj=>{
+          let priceBtns = '';
+          for(let i=1;i<=3;i++){
+            if(obj['spec'+i] && obj['price'+i]){
+              priceBtns += `<span class="menu-spec">${obj['spec'+i]} <span class="menu-price">${obj['price'+i]}</span></span>`;
+            }
+          }
+          let thccbd = obj.thccbd || '';
+          if(!thccbd && (obj.thc || obj.cbd)) thccbd = (obj.thc?obj.thc:'')+(obj.cbd?(' / '+obj.cbd):'');
+          return `
+            <div class="menu-item">
+              ${obj.img ? `<img class="menu-img" src="${obj.img}" loading="lazy" onclick="showLightbox('${obj.img}')"/>` : ""}
+              <div class="menu-info">
+                <div class="menu-name">
+                  ${obj.name || ""}
+                  ${obj.badge ? `<span class="menu-badge">${obj.badge}</span>` : ""}
+                  ${obj.type ? `<span class="menu-type">${obj.type}</span>` : ""}
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
+                  ${obj.title ? `<span class="menu-title">${obj.title}</span>` : ""}
+                  ${thccbd ? `<span class="menu-thccbd">THC/CBD: ${thccbd}</span>` : ""}
+                </div>
+                ${obj.desc ? `<div class="menu-desc">${obj.desc}</div>` : ""}
+                <div class="menu-bottom-prices">${priceBtns}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+        document.getElementById('menu').innerHTML = html || `<div style="text-align:center;color:#ccc;margin-top:40px;">暂无菜单内容</div>`;
+      })
+      .catch(err=>{
+        document.getElementById('menu').innerHTML = "<div style='text-align:center;color:var(--kfc-green);margin-top:36vw;font-size:1.08em;'>菜单加载失败，请刷新重试。</div>";
+        console.error(err);
+      });
+
+    // 图片放大灯箱功能
+    window.showLightbox = function(src) {
+      var box = document.getElementById('lightbox');
+      var img = document.getElementById('lightbox-img');
+      img.src = src;
+      box.classList.add('active');
+    }
+    document.getElementById('lightbox').onclick = function(e){
+      if(e.target===this) this.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
